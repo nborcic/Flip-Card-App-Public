@@ -1,0 +1,12 @@
+{
+    local_certs
+}
+
+flip.web.front {
+    encode gzip
+    reverse_proxy frontend: 5173
+}
+
+flip.backend {
+    reverse_proxy backend: 5050
+}

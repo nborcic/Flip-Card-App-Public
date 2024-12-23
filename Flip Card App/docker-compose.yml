@@ -1,0 +1,75 @@
+name: "flip-docker-app"
+
+services:
+
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    volumes:
+     - mongo_data:/data/db   
+    networks: 
+     - flip-docker-app
+
+
+  api: 
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./backend/.env
+    ports:
+      - 5050:5050
+    networks: 
+      - flip-docker-app
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - flip-docker-app
+    depends_on:
+      - api
+      - frontend
+
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - 5173:5173
+    networks: 
+      - flip-docker-app
+    depends_on:
+      - api
+
+
+
+
+volumes:
+  mongo_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  flip-docker-app:
+    driver: bridge
