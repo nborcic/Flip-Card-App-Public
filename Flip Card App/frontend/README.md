@@ -12,7 +12,7 @@ ________________________________________
 🧠 Engaging Learning Experience
 •	Gamified elements keep you motivated, making the learning process both fun and effective.
     🌐 Backend Integration
-•	Built on the MERN Stack (MongoDB, Express, React, Node.js) for a robust and scalable experience.
+•	Built on the MERN Stack (MongoDB, Express, React, Node.js) for a scalable experience.
 •	Backend functionalities include user session management, data storage, and progress tracking (in development).
 ________________________________________
 🛠️ Tech Stack
@@ -38,7 +38,7 @@ npm install
 3. Run the Development Server
 
 npm run dev
-The app will be available at http://localhost:3000.
+The app will be available at http://localhost:5173.
 ________________________________________
 🏗️ Future Enhancements
 •	Admin Features: Card and user management.
@@ -54,7 +54,3 @@ This project is licensed under the MIT License.
 ________________________________________
 With Flip Card Norsk App, learning Norwegian is just a flip away. Start your journey today and see how fun language learning can be! 🌍✨
 
-# flip-card-frontend
-# flip-card-frontend
-# flip-card-frontend
-# flip-card-frontend
